@@ -14,7 +14,6 @@ import PlaceList from './scr/components/PlaceList';
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState('');
   const [listOfGoals, setListGoals] = useState({});
-  //let isToggleVar = false;
   const [isToggleVar, setisToggleVar] = useState(false);
   const [keyEditing, setkeyEditing] = useState(false);
 
@@ -27,7 +26,6 @@ export default function App() {
     let cleanText = enteredGoal.toString();
     cleanText = cleanText.replace(/^\s+|\s+$/g, '');
     cleanText === '' ? alert('vacio') : goalAdd();
-   
   }
 
   function endEditing(){
