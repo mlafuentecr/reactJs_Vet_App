@@ -2,21 +2,24 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 
 const AddPlaceForm = props => {
+
   return (
     <View style={styles.formAdd}>
-      <Text style={styles.title}> Add A Goal </Text>
+      <Text style={styles.title}> Add A Goal 3</Text>
       <TextInput
         style={styles.inputIndex}
         placeholder="An awesome placeholder"
         onChangeText={props.goalInputHandler}
         onFocus={props.goalInputClear}
         value={props.enteredGoal}
+        onEndEditing={  props.goalOnpress  } //No encontre enter en react este es mi equivalente
       />
 
-      <Button title="add" style={styles.btnAdd} onPress={props.goalOnpress} />
+      <Button title="add" style={styles.btnAdd} onPress={  props.goalOnpress } />
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   formAdd: {

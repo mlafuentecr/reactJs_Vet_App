@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
+  View
 } from 'react-native';
 import AddPlaceForm from './scr/components/AddPlaceForm';
 import PlaceList from './scr/components/PlaceList';
@@ -23,12 +18,15 @@ export default function App() {
   }
 
   function goalOnpress() {
+
+     console.log(enteredGoal.length+'goalOnpress ');
     let cleanText = enteredGoal.toString();
     cleanText = cleanText.replace(/^\s+|\s+$/g, '');
     cleanText === '' ? alert('vacio') : goalAdd();
   }
 
   function endEditing(){
+    console.log(' termine de editar ');
     setisToggleVar(false);
     goalInputClear();
   }
@@ -38,22 +36,36 @@ export default function App() {
       setisToggleVar(false);
       setkeyEditing(null);
     } else {
+       console.log(enteredGoal.length+'Editando ');
       setisToggleVar(true);
       setkeyEditing(key);
-      listOfGoals[key] = { value: enteredGoal };
+
+      if(enteredGoal != 0 ){
+        goalAdd(key);
+      }else{
+        console.log('vacio');
+      }
+
     }
   }
 
   function goalAdd(key) {
+    console.log('tratando de add'+enteredGoal);
+
     if (!isToggleVar) {
       key = Math.random().toString();
     } else {
       key = keyEditing;
     }
 
-    listOfGoals[key] = { value: enteredGoal };
+    if(enteredGoal != 0 ){
+        listOfGoals[key] = { value: enteredGoal };
+      }else{
+        console.log('vacio');
+      }
+
     setisToggleVar(false);
-     goalInputClear();
+    goalInputClear();
   }
 
   function goalInputClear() {
@@ -61,6 +73,7 @@ export default function App() {
   }
 
   function removeListItemx(key) {
+    console.log('borrando');
     // 1. Take a copy of myAppointments
     const listOfGoalsCopy = { ...listOfGoals };
 
@@ -88,6 +101,7 @@ export default function App() {
         isToggleVar={isToggleVar}
         keyEditing={keyEditing}
         endEditing={endEditing}
+
       />
     </View>
   );

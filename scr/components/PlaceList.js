@@ -19,7 +19,6 @@ const PlaceList = props => {
   }, []);
 
   function keyboardDidHide() {
-    console.log('ocultano');
     Keyboard.removeAllListeners('keyboardDidHide');
   }
 
@@ -41,14 +40,20 @@ const PlaceList = props => {
       );
     } else {
       return (
-        <Ionicons
+         <Ionicons
           name="md-close-circle"
           size={22}
           color="gray"
           style={styles.closeIcon}
-          onPress={() => props.removelistItem(key)}
         />
       );
+    }
+  }
+
+  function deleteItem(key) {
+    console.log('should delete');
+    if(!props.isToggleVare){
+      props.removelistItem(key);
     }
   }
 
@@ -61,22 +66,26 @@ const PlaceList = props => {
   }
 
   const placesOutput = Object.keys(props.listOfGoals).map(key => (
-    <TouchableOpacity onLongPress={() => editableVar(key)}>
-      <View style={styles.listItem} key={key}>
+<View key={key} style={styles.listItem}  >
+
+    <TouchableOpacity activeOpacity={0.6} onLongPress={() => editableVar(key)} style={styles.listItemText} >
         <TextInput
-          style={styles.listItemText}
+
           editable={checkEditable(key)}
           onChangeText={props.goalInputHandler}
           value={props.listOfGoals[key].value}
           onEndEditing={props.endEditing}
-        />
 
-        <Text> {icon(key)} </Text>
-      </View>
+
+
+        />
     </TouchableOpacity>
+
+    <Text  style={styles.iconWrap} onPress={()=> deleteItem(key) }> { icon(key) } </Text>
+     </View>
   ));
   {
-    /* tambien esta flatlist pero esta complejo*/
+    /* tambien esta flatlist pero esta complejo */
   }
 
   return <ScrollView>{placesOutput}</ScrollView>;
@@ -92,7 +101,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     minHeight: 50,
   },
-  closeIcon: {},
+iconWrap: {
+  alignItems: 'center',
+     justifyContent: 'center',
+      width: '15%',
+},
   listItemText: {
     width: '90%',
   },
