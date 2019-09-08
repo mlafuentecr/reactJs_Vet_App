@@ -12,7 +12,7 @@ const AddPlaceForm = props => {
         onChangeText={props.goalInputHandler}
         onFocus={props.goalInputClear}
         value={props.enteredGoal}
-        onEndEditing={  props.goalOnpress  } //No encontre enter en react este es mi equivalente
+        onEndEditing={  props.goalOnpress  } //No encontre 'enter' en react este es mi equivalente
       />
 
       <Button title="add" style={styles.btnAdd} onPress={  props.goalOnpress } />
