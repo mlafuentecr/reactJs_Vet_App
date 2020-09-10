@@ -11,8 +11,9 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 const PlaceList = props => {
-  useEffect(() => {
-    this.keyboardDidShowListener = Keyboard.addListener(
+  let keyboardDidShowListener= ''
+  useEffect((keyboardDidShowListener) => {
+    keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidHide',
       keyboardDidHide
     );
